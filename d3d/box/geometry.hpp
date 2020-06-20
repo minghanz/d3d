@@ -236,10 +236,18 @@ CUDA_CALLABLE_MEMBER inline Poly2<scalar_t> make_box2(const scalar_t& x, const s
     
     poly.nvertices = 4;
     poly.vertices = new Point2<scalar_t>[4];
-    poly.vertices[0] = Point2<scalar_t>(x - dxcos + dysin, y - dxsin - dycos);
-    poly.vertices[1] = Point2<scalar_t>(x + dxcos + dysin, y + dxsin - dycos);
-    poly.vertices[2] = Point2<scalar_t>(x + dxcos - dysin, y + dxsin + dycos);
-    poly.vertices[3] = Point2<scalar_t>(x - dxcos - dysin, y - dxsin + dycos);
+    // poly.vertices[0] = Point2<scalar_t>(x - dxcos + dysin, y - dxsin - dycos);
+    // poly.vertices[1] = Point2<scalar_t>(x + dxcos + dysin, y + dxsin - dycos);
+    // poly.vertices[2] = Point2<scalar_t>(x + dxcos - dysin, y + dxsin + dycos);
+    // poly.vertices[3] = Point2<scalar_t>(x - dxcos - dysin, y - dxsin + dycos);
+
+    /// coordinate: right x, down y
+    /// 4 vertices: top-left, bottom-left, bottom-right, top-right
+    /// rotation matrix: [[c, s], [-s, c]]
+    poly.vertices[0] = Point2<scalar_t>(x - dxcos - dysin, y + dxsin - dycos);
+    poly.vertices[1] = Point2<scalar_t>(x - dxcos + dysin, y + dxsin + dycos);
+    poly.vertices[2] = Point2<scalar_t>(x + dxcos + dysin, y - dxsin + dycos);
+    poly.vertices[3] = Point2<scalar_t>(x + dxcos - dysin, y - dxsin - dycos);
 
     return poly;
 }

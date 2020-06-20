@@ -11,6 +11,17 @@ get_target_property(TORCH_INTERFACE_LIB torch INTERFACE_LINK_LIBRARIES)
 string(REPLACE "/usr/local/cuda" ${CUDA_TOOLKIT_ROOT_DIR} TORCH_INTERFACE_LIB "${TORCH_INTERFACE_LIB}")
 set_target_properties(torch PROPERTIES INTERFACE_LINK_LIBRARIES ${TORCH_INTERFACE_LIB})
 
+# set_property(TARGET torch_cuda PROPERTY INTERFACE_COMPILE_OPTIONS "")
+# set_property(TARGET torch_cpu PROPERTY INTERFACE_COMPILE_OPTIONS "")
+
+# get_target_property(TORCH_INTERFACE_LIB torch_cuda INTERFACE_LINK_LIBRARIES)
+# string(REPLACE "/usr/local/cuda" ${CUDA_TOOLKIT_ROOT_DIR} TORCH_INTERFACE_LIB "${TORCH_INTERFACE_LIB}")
+# set_target_properties(torch_cuda PROPERTIES INTERFACE_LINK_LIBRARIES ${TORCH_INTERFACE_LIB})
+
+# get_target_property(TORCH_INTERFACE_LIB torch_cpu INTERFACE_LINK_LIBRARIES)
+# string(REPLACE "/usr/local/cuda" ${CUDA_TOOLKIT_ROOT_DIR} TORCH_INTERFACE_LIB "${TORCH_INTERFACE_LIB}")
+# set_target_properties(torch_cpu PROPERTIES INTERFACE_LINK_LIBRARIES ${TORCH_INTERFACE_LIB})
+
 # Cython related dependencies
 find_package(PythonExtensions REQUIRED)
 find_package(Cython REQUIRED)
